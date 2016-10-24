@@ -1,16 +1,23 @@
-import React, { Component } from 'react';
-import { Router, Route, browserHistory } from 'react-router';
+import React from 'react';
+import { Router, Route, IndexRoute } from 'react-router';
 
-const testComponent = () => (<h1>Hiya!</h1>)
+import App from './app'
+import LoginForm from './forms/login'
+import RegisterForm from './forms/register'
+import ProtectedComponent from './protected_example'
+import requireAuthentication from './higher-order/require_authentication'
 
-class MyRouter extends Component {
-  render(){
-    return (
-      <Router history={browserHistory}>
-        <Route path="/" component={testComponent}/>
-      </Router>
-    )
-  }
-}
+const SimpleComponent = (props) => (<div> I'm a dummy component! </div>)
+
+const MyRouter = ({ history }) => (
+  <Router history={history}>
+    <Route path='/' component={App}>
+      <IndexRoute component={SimpleComponent}/>
+      <Route path='protected' component={requireAuthentication(ProtectedComponent)}/>
+      <Route path='login' component={LoginForm}/>
+      <Route path='register' component={RegisterForm}/>
+    </Route>
+  </Router>
+);
 
 export default MyRouter;

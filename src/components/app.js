@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
+
+import LoginControl from './login_control'
 
 class App extends Component {
   render() {
     return (
       <div>
-        <div>
-          <h2>Rendered on Every Page</h2>
-        </div>
+        <h3>Every page!</h3>
+        <LoginControl/>
         <div>
           {this.props.children}
         </div>
+        <Link to='/protected'>Protected Element</Link>
       </div>
     );
   }
