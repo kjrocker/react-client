@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
-import { loginUser } from '../../actions/auth';
+import { loginUser } from './actions';
 
 class LoginForm extends Component {
   login = (values) => {

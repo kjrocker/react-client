@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 
-import LoginControl from './login_control'
+import LoginControl from '../auth/login_button'
 
 class App extends Component {
   render() {

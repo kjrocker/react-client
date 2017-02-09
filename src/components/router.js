@@ -2,10 +2,10 @@ import React from 'react';
 import { Router, Route, IndexRoute } from 'react-router';
 
 import App from './app'
-import LoginForm from './forms/login'
-import RegisterForm from './forms/register'
+import LoginForm from '../auth/login_form'
+import RegisterForm from '../user/register'
 import ProtectedComponent from './protected_example'
-import requireAuthentication from './higher-order/require_authentication'
+import requireAuthentication from '../auth/require_authentication'
 
 const SimpleComponent = (props) => (<div> I'm a dummy component! </div>)
 

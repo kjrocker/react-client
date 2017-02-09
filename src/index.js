@@ -8,7 +8,7 @@ import { syncHistoryWithStore, routerMiddleware } from 'react-router-redux';
 
 import rootReducer from './reducers';
 import MyRouter from './components/router'
-import { loginUserSuccess } from './actions/auth';
+import { loginUserSuccess } from './auth/actions';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const reduxRouter = routerMiddleware(browserHistory)

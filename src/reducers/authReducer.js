@@ -1,15 +1,16 @@
-import { LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, LOGIN_USER_FAILURE, LOGOUT_USER } from '../actionTypes';
+import { LOGIN_USER_REQUEST, LOGIN_USER_TOKEN,
+  LOGIN_USER_FAILURE, LOGOUT_USER, LOGIN_USER_SUCCESS } from '../actionTypes';
 
 const initialState = {
     token: null,
-    userName: null,
+    currentUser: {},
     isAuthenticated: false,
     isAuthenticating: false,
     statusText: null
 };
 
-const reducer = (state = initialState, action) => {
-  switch(action.type) {
+const reducer = (state = initialState, { type, payload }) => {
+  switch(type) {
     case LOGIN_USER_REQUEST:
       return {
         ...state,
@@ -21,24 +22,26 @@ const reducer = (state = initialState, action) => {
         ...state,
         isAuthenticating: false,
         isAuthenticated: true,
-        token: action.payload.token,
+        token: payload.token,
+        currentUser: payload.user,
         statusText: 'You are now logged in.'
       };
     case LOGIN_USER_FAILURE:
+      const { status, statusText } = payload.error.response
       return {
         ...state,
         isAuthenticating: false,
         isAuthenticated: false,
         token: null,
-        userName: null,
-        statusText: `Authentication Error: ${action.payload.status} ${action.payload.statusText}`
+        currentUser: {},
+        statusText: `Authentication Error: ${status} ${statusText}`
       };
     case LOGOUT_USER:
       return {
         ...state,
         isAuthenticated: false,
         token: null,
-        userName: null,
+        currentUser: {},
         statusText: 'You are now logged out.'
       };
     default:

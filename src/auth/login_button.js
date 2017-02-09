@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { logoutUser } from '../actions/auth';
+import { logoutUser } from './actions';
 
 // Render either Login or Logout, with appropriate actions
 class LoginControl extends Component {

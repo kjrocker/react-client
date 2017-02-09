@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-redux';
 
-import { registerUser } from '../../actions/auth'
+import { registerUser } from '../auth/actions'
 
 class RegisterForm extends Component {
   register = (values) => {
