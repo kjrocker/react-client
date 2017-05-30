@@ -1,5 +1,4 @@
-import { LOGIN_USER_REQUEST, LOGIN_USER_TOKEN,
-  LOGIN_USER_FAILURE, LOGOUT_USER, LOGIN_USER_SUCCESS } from '../actionTypes';
+import { LOGIN_USER_REQUEST, LOGIN_USER_FAILURE, LOGOUT_USER, LOGIN_USER_SUCCESS } from './actionTypes';
 
 const initialState = {
     token: null,

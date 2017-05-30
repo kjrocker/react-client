@@ -6,6 +6,8 @@ import { Link } from 'react-router';
 
 import { loginUser } from './actions';
 
+import StatusBar from './statusBar'
+
 class LoginForm extends Component {
   login = (values) => {
     const redirectRoute = this.props.location.query.next || '/login';
@@ -18,7 +20,7 @@ class LoginForm extends Component {
     if ( isAuthenticated ) {
       return (
         <div>
-          {this.props.statusText ? <div className='alert alert-info'>{statusText}</div> : ''}
+          <StatusBar text={statusText}/>
           <p>You're already logged in!</p>
         </div>
       )
@@ -26,7 +28,7 @@ class LoginForm extends Component {
     // Render the form
     return (
       <div>
-        {statusText ? <div className='alert alert-info'>{statusText}</div> : ''}
+        <StatusBar text={statusText}/>
         <form onSubmit={handleSubmit(this.login)}>
           <div>
             <label htmlFor="auth[username]">Username</label>

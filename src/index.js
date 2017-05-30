@@ -6,27 +6,26 @@ import thunk from 'redux-thunk';
 import { browserHistory } from 'react-router';
 import { syncHistoryWithStore, routerMiddleware } from 'react-router-redux';
 
-import rootReducer from './reducers';
-import MyRouter from './components/router'
-import { loginUserSuccess } from './auth/actions';
+import { RootReducer, MyApp } from './core'
+import { actions } from './auth';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const reduxRouter = routerMiddleware(browserHistory)
 
 const store = createStore(
-  rootReducer,
+  RootReducer,
   composeEnhancers(applyMiddleware(thunk, reduxRouter))
 )
 const history = syncHistoryWithStore(browserHistory, store)
 
 let token = localStorage.getItem('token');
 if (token !== null) {
-  store.dispatch(loginUserSuccess(token));
+  store.dispatch(actions.loginUserSuccess(token));
 }
 
 ReactDOM.render(
   <Provider store={store}>
-    <MyRouter history={history}/>
+    <MyApp history={history}/>
   </Provider>,
   document.getElementById('root')
 );

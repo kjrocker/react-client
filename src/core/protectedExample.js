@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 
+import { requireAuthentication } from '../auth'
+
 class ProtectedExample extends Component {
   render() {
-    const msg = 'You must be logged in to see this!'
     return (
       <div>
-        { msg }
+        You must be logged in to see this!
       </div>
     );
   }
 }
 
-export default ProtectedExample;
+export default requireAuthentication(ProtectedExample);

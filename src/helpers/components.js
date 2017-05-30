@@ -1,5 +1,9 @@
-const statusBar = ({ text }) => {
-  {this.props.statusText ? <div className='alert alert-info'>{text}</div> : ''}
-}
+import React from 'react'
 
-export statusBar;
+const StatusBar = ({ text }) => (
+  <div>
+    {text.length > 0 ? <div className='alert alert-info'>{text}</div> : null}
+  </div>
+)
+
+export { StatusBar };

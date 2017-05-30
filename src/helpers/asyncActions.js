@@ -10,7 +10,7 @@ function checkHttpStatus(response) {
   }
 }
 
-export function formRequest(form, token) {
+function formRequest(form, token) {
   return {
     method: 'post',
     credentials: 'include',
@@ -23,7 +23,7 @@ export function formRequest(form, token) {
   }
 }
 
-export function addRedirect(action, redirect) {
+function addRedirect(action, redirect) {
   return function(response) {
     return function(dispatch) {
       dispatch(action(response))
@@ -32,7 +32,7 @@ export function addRedirect(action, redirect) {
   }
 }
 
-export function genericAJAX(endpoint, request, { start, succeed, fail }) {
+function genericAJAX(endpoint, request, { start, succeed, fail }) {
   return function(dispatch) {
     dispatch(start(request))
     return fetch(endpoint, request)
@@ -42,3 +42,9 @@ export function genericAJAX(endpoint, request, { start, succeed, fail }) {
       .catch(e => dispatch(fail(e)))
   }
 }
+
+export {
+  genericAJAX,
+  formRequest,
+  addRedirect
+};

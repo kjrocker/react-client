@@ -4,18 +4,13 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
-import { updateUser } from './actions';
-import { statusBar } from '../helpers/components'
+import { registerUser } from './actions'
 
-class LoginForm extends Component {
+import StatusBar from './statusBar'
 
-  update = (values) => {
-    this.props.actions.updateUser(values)
-  }
-
-  render(){
+class RegisterForm extends Component {
+  render() {
     const { handleSubmit, statusText, isAuthenticated } = this.props;
-    // Don't render the form if already authenticated
     if ( isAuthenticated ) {
       return (
         <div>
@@ -24,12 +19,10 @@ class LoginForm extends Component {
         </div>
       )
     }
-    // Render the form
     return (
       <div>
         <StatusBar text={statusText}/>
-        <form onSubmit={handleSubmit(this.update)}>
-          <Field name="id" component="hidden" value={user.id}
+        <form onSubmit={handleSubmit(this.props.actions.registerUser)}>
           <div>
             <label htmlFor="user[username]">Username</label>
             <Field name="user[username]" component="input" type="text"/>
@@ -38,10 +31,14 @@ class LoginForm extends Component {
             <label htmlFor="user[password]">Password</label>
             <Field name="user[password]" component="input" type="password"/>
           </div>
-          <button type="submit">Update</button>
+          <div>
+            <label htmlFor="user[password_confirmation]">Confirmation</label>
+            <Field name="user[password_confirmation]" component="input" type="password"/>
+          </div>
+          <button type="submit">Register</button>
         </form>
         <div>
-          Don't have an account? You can <Link to='/register'>register</Link> here.
+          Already have an account? You can <Link to='/login'>login</Link> here.
         </div>
       </div>
     )
@@ -49,7 +46,7 @@ class LoginForm extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  actions: bindActionCreators({ loginUser }, dispatch)
+  actions: bindActionCreators({ registerUser }, dispatch)
 })
 
 const mapStateToProps = (state) => ({
@@ -58,8 +55,8 @@ const mapStateToProps = (state) => ({
   statusText: state.auth.statusText
 })
 
-const loginForm = reduxForm({
-  form: 'login'
-})(LoginForm);
+const registerForm = reduxForm({
+  form: 'register'
+})(RegisterForm);
 
-export default connect(mapStateToProps, mapDispatchToProps)(loginForm);
+export default connect(mapStateToProps, mapDispatchToProps)(registerForm);

@@ -1,10 +1,9 @@
-// import jwtDecode from 'jwt-decode';
-import * as types from '../actionTypes';
+import * as types from './actionTypes';
 import { push } from 'react-router-redux';
 
-import { genericAJAX, formRequest, addRedirect } from '../helpers/async_actions'
+import { genericAJAX, formRequest, addRedirect } from '../helpers/asyncActions'
 
-export function registerUser(form_obj) {
+function registerUser(form_obj) {
   const request = formRequest(form_obj)
   return genericAJAX('/users', request, {
     start: loginUserRequest,
@@ -13,7 +12,7 @@ export function registerUser(form_obj) {
   })
 }
 
-export function loginUser(form_obj, redirect = '/') {
+function loginUser(form_obj, redirect = '/') {
   const request = formRequest(form_obj)
   return genericAJAX('/user_token', request, {
     start: loginUserRequest,
@@ -22,14 +21,14 @@ export function loginUser(form_obj, redirect = '/') {
   })
 }
 
-export function logoutAndRedirect() {
+function logoutAndRedirect() {
   return (dispatch, state) => {
     dispatch(logoutUser());
     dispatch(push('/login'));
   }
 }
 
-export function loginUserSuccess({ user, jwt }) {
+function loginUserSuccess({ user, jwt }) {
   return {
     type: types.LOGIN_USER_SUCCESS,
     payload: {
@@ -39,7 +38,7 @@ export function loginUserSuccess({ user, jwt }) {
   }
 }
 
-export function loginUserFailure(error) {
+function loginUserFailure(error) {
   localStorage.removeItem('token');
   return {
     type: types.LOGIN_USER_FAILURE,
@@ -47,30 +46,25 @@ export function loginUserFailure(error) {
   }
 }
 
-export function loginUserRequest() {
+function loginUserRequest() {
   return {
     type: types.LOGIN_USER_REQUEST
   }
 }
 
-export function logoutUser() {
+function logoutUser() {
   localStorage.removeItem('token');
   return {
     type: types.LOGOUT_USER
   }
 }
 
-export function receiveProtectedData(data) {
-  return {
-    type: types.RECEIVE_PROTECTED_DATA,
-    payload: {
-      data: data
-    }
-  }
-}
-
-export function fetchProtectedDataRequest() {
-  return {
-    type: types.FETCH_PROTECTED_DATA_REQUEST
-  }
+export {
+  registerUser,
+  loginUser,
+  logoutAndRedirect,
+  loginUserSuccess,
+  loginUserFailure,
+  loginUserRequest,
+  logoutUser
 }
