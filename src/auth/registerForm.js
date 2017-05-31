@@ -24,8 +24,8 @@ class RegisterForm extends Component {
         <StatusBar text={statusText}/>
         <form onSubmit={handleSubmit(this.props.actions.registerUser)}>
           <div>
-            <label htmlFor="user[username]">Username</label>
-            <Field name="user[username]" component="input" type="text"/>
+            <label htmlFor="user[email]">Email</label>
+            <Field name="user[email]" component="input" type="text"/>
           </div>
           <div>
             <label htmlFor="user[password]">Password</label>

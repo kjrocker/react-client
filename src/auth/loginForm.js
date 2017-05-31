@@ -31,8 +31,8 @@ class LoginForm extends Component {
         <StatusBar text={statusText}/>
         <form onSubmit={handleSubmit(this.login)}>
           <div>
-            <label htmlFor="auth[username]">Username</label>
-            <Field name="auth[username]" component="input" type="text"/>
+            <label htmlFor="auth[email]">Email</label>
+            <Field name="auth[email]" component="input" type="text"/>
           </div>
           <div>
             <label htmlFor="auth[password]">Password</label>
