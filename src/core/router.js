@@ -7,6 +7,7 @@ import { LoginForm, RegisterForm } from '../auth';
 
 const SimpleComponent = (props) => (<div> I'm a dummy component! </div>)
 
+// Simplest Router. Home, login, register, and a page requiring login
 const MyRouter = ({ history }) => (
   <Router history={history}>
     <Route path='/' component={App}>

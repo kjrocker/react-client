@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 
-export default function requireAuthentication(Component) {
+// Redirect to login if something attempts to render BaseComponent and
+// the user is at any point unauthenticated. Pass the login redirect
+// the information it needs to come back to the route once authenticated.
+export default function requireAuthentication(BaseComponent) {
 
-  class AuthenticatedComponent extends React.Component {
+  class AuthenticatedComponent extends Component {
 
     componentWillMount(){
       this.checkAuth(this.props.isAuthenticated);
@@ -24,7 +27,7 @@ export default function requireAuthentication(Component) {
     render() {
       return (
         <div>
-          { this.props.isAuthenticated ? <Component {...this.props}/> : null }
+          { this.props.isAuthenticated ? <BaseComponent {...this.props}/> : null }
         </div>
       )
     }

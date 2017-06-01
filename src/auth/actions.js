@@ -21,12 +21,7 @@ function loginUser(form_obj, redirect = '/') {
   })
 }
 
-function logoutAndRedirect() {
-  return (dispatch, state) => {
-    dispatch(logoutUser());
-    dispatch(push('/login'));
-  }
-}
+
 
 function loginUserSuccess({ user, jwt }) {
   return {
@@ -58,6 +53,8 @@ function logoutUser() {
     type: types.LOGOUT_USER
   }
 }
+
+const logoutAndRedirect => addRedirect(logoutUser, '/login');
 
 export {
   registerUser,
