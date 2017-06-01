@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { requireAuthentication } from '../auth'
+import { requireAuthentication } from '../helpers'
 
 class ProtectedExample extends Component {
   render() {

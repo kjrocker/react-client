@@ -1,10 +1,10 @@
 import * as types from './actionTypes';
 import { push } from 'react-router-redux';
 
-import { genericAJAX, formRequest, addRedirect } from '../helpers/asyncActions'
+import { genericAJAX, postFormRequest, addRedirect } from '../helpers/asyncActions'
 
 function registerUser(form_obj) {
-  const request = formRequest(form_obj)
+  const request = postFormRequest(form_obj)
   return genericAJAX('/users', request, {
     start: loginUserRequest,
     succeed: addRedirect(loginUserSuccess, '/'),
@@ -13,7 +13,7 @@ function registerUser(form_obj) {
 }
 
 function loginUser(form_obj, redirect = '/') {
-  const request = formRequest(form_obj)
+  const request = postFormRequest(form_obj)
   return genericAJAX('/user_token', request, {
     start: loginUserRequest,
     succeed: addRedirect(loginUserSuccess, redirect),
