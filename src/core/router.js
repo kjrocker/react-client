@@ -3,7 +3,7 @@ import { Router, Route, IndexRoute } from 'react-router';
 
 import App from './app'
 import ProtectedComponent from './protectedExample'
-import { LoginForm, RegisterForm } from '../auth';
+import { LoginForm, RegisterWrapper } from '../auth';
 
 const SimpleComponent = (props) => (<div> I'm a dummy component! </div>)
 
@@ -14,7 +14,7 @@ const MyRouter = ({ history }) => (
       <IndexRoute component={SimpleComponent}/>
       <Route path='protected' component={ProtectedComponent}/>
       <Route path='login' component={LoginForm}/>
-      <Route path='register' component={RegisterForm}/>
+      <Route path='register' component={RegisterWrapper}/>
     </Route>
   </Router>
 );

@@ -24,6 +24,7 @@ function loginUser(form_obj, redirect = '/') {
 
 
 function loginUserSuccess({ user, jwt }) {
+  localStorage.setItem('token', jwt)
   return {
     type: types.LOGIN_USER_SUCCESS,
     payload: {
@@ -54,7 +55,7 @@ function logoutUser() {
   }
 }
 
-const logoutAndRedirect => addRedirect(logoutUser, '/login');
+const logoutAndRedirect = addRedirect(logoutUser, '/login');
 
 export {
   registerUser,
