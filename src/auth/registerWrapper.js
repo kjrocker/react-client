@@ -20,7 +20,7 @@ class RegisterWrapper extends Component {
     const ChildComponent = isAuthenticated ? <LoggedInMessage/> : (
       <div>
         <RegisterForm submitAction={this.props.actions.registerUser}/>
-        <p>Login Message</p>
+        <p>Already have an account? <Link to='/login'>Login</Link> here.</p>
       </div>
     )
 
