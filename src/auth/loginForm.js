@@ -10,40 +10,24 @@ import StatusBar from './statusBar'
 
 class LoginForm extends Component {
   login = (values) => {
-    const redirectRoute = this.props.location.query.next || '/login';
+    const redirectRoute = this.props.location.query.next || '/login'
     this.props.actions.loginUser(values, redirectRoute)
   }
 
   render(){
-    const { handleSubmit, statusText, isAuthenticated } = this.props;
-    // Don't render the form if already authenticated
-    if ( isAuthenticated ) {
-      return (
-        <div>
-          <StatusBar text={statusText}/>
-          <p>You're already logged in!</p>
-        </div>
-      )
-    }
-    // Render the form
+    const { handleSubmit } = this.props
     return (
-      <div>
-        <StatusBar text={statusText}/>
-        <form onSubmit={handleSubmit(this.login)}>
-          <div>
-            <label htmlFor="auth[email]">Email</label>
-            <Field name="auth[email]" component="input" type="text"/>
-          </div>
-          <div>
-            <label htmlFor="auth[password]">Password</label>
-            <Field name="auth[password]" component="input" type="password"/>
-          </div>
-          <button type="submit">Login</button>
-        </form>
+      <form onSubmit={handleSubmit(this.login)}>
         <div>
-          Don't have an account? You can <Link to='/register'>register</Link> here.
+          <label htmlFor="auth[email]">Email</label>
+          <Field name="auth[email]" component="input" type="text"/>
         </div>
-      </div>
+        <div>
+          <label htmlFor="auth[password]">Password</label>
+          <Field name="auth[password]" component="input" type="password"/>
+        </div>
+        <button type="submit">Login</button>
+      </form>
     )
   }
 }
@@ -52,14 +36,6 @@ const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators({ loginUser }, dispatch)
 })
 
-const mapStateToProps = (state) => ({
-  isAuthenticating: state.auth.isAuthenticating,
-  isAuthenticated: state.auth.isAuthenticated,
-  statusText: state.auth.statusText
-})
+const loginForm = connect(null, mapDispatchToProps)(LoginForm)
 
-const loginForm = reduxForm({
-  form: 'login'
-})(LoginForm);
-
-export default connect(mapStateToProps, mapDispatchToProps)(loginForm);
+export default reduxForm({ form: 'login' })(loginForm)

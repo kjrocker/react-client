@@ -1,18 +1,23 @@
 import React, { Component } from 'react'
 import { Field, reduxForm } from 'redux-form'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+
+import { registerUser } from './actions'
 
 // The Registration Form Itself
 // Takes the action/function that gets passed
 // to handleSubmit, connects to reduxForm.
 
 class RegisterForm extends Component {
-  onSubmit = () => {
-    this.props.handleSubmit(this.props.submitAction)
+  register = (values) => {
+    this.props.actions.registerUser(values)
   }
 
   render() {
+    const { handleSubmit } = this.props
     return (
-      <form onSubmit={this.onSubmit()}>
+      <form onSubmit={handleSubmit(this.register)}>
         <div>
           <label htmlFor="user[email]">Email</label>
           <Field name="user[email]" component="input" type="text"/>
@@ -31,4 +36,10 @@ class RegisterForm extends Component {
   }
 }
 
-export default reduxForm({form: 'register' })(RegisterForm);
+const mapDispatchToProps = (dispatch) => ({
+  actions: bindActionCreators({ registerUser }, dispatch)
+})
+
+const registerForm = connect(null, mapDispatchToProps)(RegisterForm)
+
+export default reduxForm({form: 'register' })(registerForm);
