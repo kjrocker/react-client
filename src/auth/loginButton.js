@@ -13,7 +13,7 @@ class LoginControl extends Component {
       <div>
         {
           isAuthenticated
-          ? <a href='#' onClick={() => actions.logoutUser()}>Logout</a>
+          ? <a onClick={() => actions.logoutUser()}>Logout</a>
           : <Link to='/login'>Login</Link>
         }
       </div>

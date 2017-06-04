@@ -2,11 +2,8 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
 
 import { loginUser } from './actions';
-
-import StatusBar from './statusBar'
 
 class LoginForm extends Component {
   login = (values) => {
