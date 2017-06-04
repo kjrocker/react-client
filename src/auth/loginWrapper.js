@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
-import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
 
-import { loginUser } from './actions'
 import LoggedInMessage from './loggedInMessage'
 import LoginForm from './loginForm'
 import StatusBar from './statusBar'
