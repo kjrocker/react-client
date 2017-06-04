@@ -5,6 +5,7 @@
   "proxy": "http://localhost:3001/api/",
   "devDependencies": {
     "enzyme": "^2.4.1",
+    "fetch-mock": "^5.11.0",
     "jest": "^20.0.4",
     "nock": "^9.0.13",
     "react-addons-test-utils": "^15.3.2",
