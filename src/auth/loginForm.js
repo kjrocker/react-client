@@ -7,7 +7,7 @@ import { loginUser } from './actions';
 
 class LoginForm extends Component {
   login = (values) => {
-    const redirectRoute = this.props.location.query.next || '/login'
+    const redirectRoute = this.props.location.query.next || '/'
     this.props.actions.loginUser(values, redirectRoute)
   }
 

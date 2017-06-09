@@ -11,7 +11,7 @@ class LoginWrapper extends Component {
     const { statusText, isAuthenticated } = this.props
     const ChildComponent = isAuthenticated ? <LoggedInMessage/> : (
       <div>
-        <LoginForm/>
+        <LoginForm location={this.props.location}/>
         <p>Don't have an account? <Link to='/register'>Register</Link> here.</p>
       </div>
     )
