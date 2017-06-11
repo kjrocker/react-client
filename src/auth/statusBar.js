@@ -1,8 +1,9 @@
 import React from 'react';
+import { Message } from 'semantic-ui-react';
 
 const StatusBar = ({ text }) => (
   <div>
-    { text ? <div className='alert alert-info'>{ text }</div> : null }
+    { text ? <Message error header={text}/> : null }
   </div>
 )
 
