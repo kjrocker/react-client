@@ -15,9 +15,12 @@ class ChapterForm extends Component {
         </Form.Field>
         <Form.Field>
           <label htmlFor="chapter[text]">Content</label>
-          <Field name="chapter[text]" component="textarea" rows={5}/>
+          <Field name="chapter[text]" component="textarea" rows={20}/>
         </Form.Field>
-        <Button primary type="submit">Preview</Button>
+        <Button.Group widths='2'>
+          <Button onClick={handleSubmit(createPreview)}>Preview</Button>
+          <Button primary type="submit">Submit</Button>
+        </Button.Group>
       </Form>
     )
   }

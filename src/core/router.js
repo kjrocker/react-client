@@ -4,7 +4,7 @@ import { Router, Route, IndexRoute } from 'react-router';
 import App from './app'
 import ProtectedComponent from './protectedExample'
 import { LoginWrapper, RegisterWrapper } from '../auth';
-import { ChapterWrapper } from '../chapters'
+import { ChapterWrapper, ChapterShow } from '../chapters'
 
 const SimpleComponent = (props) => (<div> I'm a dummy component! </div>)
 
@@ -17,6 +17,7 @@ const MyRouter = ({ history }) => (
       <Route path='login' component={LoginWrapper}/>
       <Route path='register' component={RegisterWrapper}/>
       <Route path='chapter' component={ChapterWrapper}/>
+      <Route path='oneshot' component={ChapterShow}/>
     </Route>
   </Router>
 );
