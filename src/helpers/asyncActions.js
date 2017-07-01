@@ -43,14 +43,14 @@ function addRedirect(action, redirect) {
 // the specified actions through the reducer on request start, request
 // success, and request failure. Passes the response and error into the
 // success and failure actions, respectively.
-function genericAJAX(endpoint, request, { start, succeed, fail }) {
+function genericAJAX(endpoint, body, { request, success, failure }) {
   return function(dispatch) {
-    dispatch(start(request))
-    return fetch(endpoint, request)
+    dispatch(request(body))
+    return fetch(endpoint, body)
       .then(checkHttpStatus)
       .then(r => r.json())
-      .then(r => dispatch(succeed(r)))
-      .catch(e => dispatch(fail(e)))
+      .then(r => dispatch(success(r)))
+      .catch(e => dispatch(failure(e)))
   }
 }
 

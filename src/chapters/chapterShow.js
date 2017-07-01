@@ -1,28 +1,52 @@
 import React, { Component } from 'react'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 import { Container, Grid } from 'semantic-ui-react'
+import renderHTML from 'react-render-html'
+
+import { getStoryWithChapters } from './actions'
+
+const CompleteChapter = ({ chapter }) => {
+  return (
+    <Grid container>
+      <Grid.Row>
+        <Grid.Column>
+          <h3>{ chapter.attributes.title || 'Test' }</h3>
+        </Grid.Column>
+      </Grid.Row>
+      <Grid.Row>
+        <Grid.Column>
+          <Container text>
+            { renderHTML(chapter.attributes.text) }
+          </Container>
+        </Grid.Column>
+      </Grid.Row>
+    </Grid>
+  )
+}
 
 class ChapterPage extends Component {
-  constructor(props) {
-    super(props)
+  componentWillMount() {
+    this.props.actions.getStoryWithChapters(this.props.params.id)
   }
+
   render() {
-    const { title, text, number } = this.props.chapter
-    return (
-      <Grid container>
-        <Grid.Row>
-          <Grid.Column>
-            <h3>{ this.state.title }</h3>
-          </Grid.Column>
-        </Grid.Row>
-        <Grid.Row>
-          <Grid.Column>
-            <Container text>
-              { this.state.chapter.text }
-            </Container>
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
-    )
+    if (this.props.chapter) {
+      return <CompleteChapter chapter={this.props.chapter}/>
+    } else {
+      return <Container text/>
+    }
   }
 }
-export default ChapterPage;
+
+const mapDispatchToProps = (dispatch) => ({
+  actions: bindActionCreators({ getStoryWithChapters }, dispatch)
+});
+
+const mapStateToProps = (state) => {
+  return {
+    chapter: state.api.chapters["3"]
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ChapterPage);

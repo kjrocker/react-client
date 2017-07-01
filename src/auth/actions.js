@@ -5,18 +5,18 @@ import { genericAJAX, postFormRequest, addRedirect } from '../helpers/asyncActio
 function registerUser(form_obj) {
   const request = postFormRequest(form_obj)
   return genericAJAX('/users', request, {
-    start: loginUserRequest,
+    request: loginUserRequest,
     succeed: addRedirect(loginUserSuccess, '/'),
-    fail: loginUserFailure
+    failure: loginUserFailure
   })
 }
 
 function loginUser(form_obj, redirect = '/') {
   const request = postFormRequest(form_obj)
   return genericAJAX('/user_token', request, {
-    start: loginUserRequest,
+    request: loginUserRequest,
     succeed: addRedirect(loginUserSuccess, redirect),
-    fail: loginUserFailure
+    failure: loginUserFailure
   })
 }
 

@@ -6,18 +6,18 @@ import ProtectedComponent from './protectedExample'
 import { LoginWrapper, RegisterWrapper } from '../auth';
 import { ChapterWrapper, ChapterShow } from '../chapters'
 
-const SimpleComponent = (props) => (<div> I'm a dummy component! </div>)
+const SimpleComponent = (props) => (<div> { props.children } </div>)
 
-// Simplest Router. Home, login, register, and a page requiring login
 const MyRouter = ({ history }) => (
   <Router history={history}>
     <Route path='/' component={App}>
-      <IndexRoute component={SimpleComponent}/>
       <Route path='protected' component={ProtectedComponent}/>
       <Route path='login' component={LoginWrapper}/>
       <Route path='register' component={RegisterWrapper}/>
-      <Route path='chapter' component={ChapterWrapper}/>
-      <Route path='oneshot' component={ChapterShow}/>
+      <Route path='stories/:id'>
+        <IndexRoute component={ChapterShow}/>
+        <Route path=":number" component={ChapterShow}/>
+      </Route>
     </Route>
   </Router>
 );
