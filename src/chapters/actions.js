@@ -35,6 +35,14 @@ export const goToChapter = (storyId, chapterNumber) => {
   }
 }
 
+export const getStories = () => {
+  return genericAJAX('/stories', getRequest, {
+    request: storyGetRequest,
+    success: storyGetSuccess,
+    failure: storyGetFailure
+  })
+}
+
 export const getStory = (storyId) => {
   return genericAJAX(`/stories/${storyId}`, getRequest, {
     request: storyGetRequest,
