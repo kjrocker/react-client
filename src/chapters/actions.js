@@ -1,4 +1,5 @@
 import normalize from 'json-api-normalizer'
+import { push } from 'react-router-redux'
 
 import * as types from './actionTypes'
 import { genericAJAX } from '../helpers'
@@ -26,6 +27,12 @@ export const getChapters = (storyId) => {
     success: chapterIndexSuccess,
     failure: chapterIndexFailure
   })
+}
+
+export const goToChapter = (storyId, chapterNumber) => {
+  return (dispatch) => {
+    dispatch(push(`/stories/${storyId}/${chapterNumber}`))
+  }
 }
 
 export const getStory = (storyId) => {
